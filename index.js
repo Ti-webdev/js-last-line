@@ -7,20 +7,40 @@
     }
   }
 
-  function getLastLine(textNode) {
+  function insertAfter(parentNode, newNode, referenceNode) {
+      parentNode.insertBefore(newNode, referenceNode.nextSibling);
+  }
+
+  function getLastLine(textNode, helperTagName) {
     assertTextNode(textNode);
 
-    var parent = textNode.parentNode;
-    var height = parent.offsetHeight;
-    var result = '';
-    var pos = textNode.data.length;
-    while(0 < pos && height === parent.offsetHeight) {
+    var parentNode = textNode.parentNode;
+    var helperNode = document.createElement(helperTagName||'span');
+    helperNode.style.display = 'inline-block';
+
+    insertAfter(parentNode, helperNode, textNode);
+
+    var lastLineOffsetTop = helperNode.offsetTop;
+
+    var pos = textNode.length;
+    var isLastLine = true;
+    while(0 < pos && isLastLine) {
       pos--;
-      result = textNode.substringData(pos, 1) + result;
-      textNode.deleteData(pos, 1);
+      var cutedTextNode = textNode.splitText(pos);
+      insertAfter(parentNode, cutedTextNode, helperNode);
+
+      console.log(lastLineOffsetTop, helperNode.offsetTop, cutedTextNode.data);
+      isLastLine = helperNode.offsetTop === lastLineOffsetTop;
+
+      textNode.appendData(cutedTextNode.data);
+      parentNode.removeChild(cutedTextNode);
     }
-    textNode.appendData(result);
-    return result.replace(/^\s+|\s+$/g, '');
+
+    parentNode.removeChild(helperNode);
+
+    console.log('result:', pos, textNode.length);
+
+    return textNode.substringData(pos, textNode.length - pos).replace(/^\s+|\s+$/g, '');
   }
 
   if ('undefined' !== typeof exports) {

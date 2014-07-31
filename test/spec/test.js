@@ -2,7 +2,10 @@ it("has valid last line text", function () {
   var table = {
     a: "счастливой жизни.",
     b: "которого я бы назвал зодчим счастливой жизни.",
-    c: "наслаждение."
+    c: "наслаждение.",
+    d: "b",
+    e: "a",
+    f: "",
   };
   Object.keys(table).forEach(function(id) {
     var expected = table[id];
