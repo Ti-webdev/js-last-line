@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mocha Test Runner</title>
+    <link rel="stylesheet" href="../bower_components/mocha/mocha.css">
+    <style>
+      #a, #b, #c {
+        font-family: Arial;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mocha"></div>
+
+    <h2>#a</h2>
+    <div id="a" style="width: 10em; overflow: hidden">
+      Но чтобы вы поняли, откуда возникает это превратное представление людей, порицающих наслаждение и восхваляющих страдания, я раскрою перед вами всю картину и разъясню, что именно говорил этот человек, открывший истину, которого я бы назвал зодчим счастливой жизни.
+    </div>
+
+    <h2>#b</h2>
+    <div id="b" style="width: 30em; overflow: hidden">
+      Но чтобы вы поняли, откуда возникает это превратное представление людей, порицающих наслаждение и восхваляющих страдания, я раскрою перед вами всю картину и разъясню, что именно говорил этот человек, открывший истину, которого я бы назвал зодчим счастливой жизни.
+    </div>
+
+    <h3>#c</h3>
+    <div id="c" style="width: 10em; overflow: hidden">
+      Равно как нет никого, кто возлюбил бы, предпочел и возжаждал бы само страдание только за то, что это страдание, а не потому, что иной раз возникают такие обстоятельства, когда страдания и боль приносят некое и немалое наслаждение.
+    </div>
+
+    <script src="../index.js"></script>
+    <script src="../bower_components/mocha/mocha.js"></script>
+    <script src="../bower_components/should/should.js"></script>
+    <script>mocha.setup('bdd')</script>
+    <script src="spec/test.js"></script>
+    <script>
+      if (window.mochaPhantomJS) {
+        mochaPhantomJS.run();
+      } else {
+        mocha.run();
+      }
+    </script>
+  </body>
+</html>
