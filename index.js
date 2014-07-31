@@ -16,29 +16,29 @@
 
     var parentNode = textNode.parentNode;
     var helperNode = document.createElement(helperTagName||'span');
-    helperNode.style.display = 'inline-block';
-
     insertAfter(parentNode, helperNode, textNode);
 
-    var lastLineOffsetTop = helperNode.offsetTop;
-
-    var pos = textNode.length;
+    var lastLineOffsetTop = null;
+    var pos = textNode.length - textNode.data.match(/\s*$/)[0].length;
     var isLastLine = true;
     while(0 < pos && isLastLine) {
       pos--;
       var cutedTextNode = textNode.splitText(pos);
+      console.log(cutedTextNode.data);
       insertAfter(parentNode, cutedTextNode, helperNode);
 
-      console.log(lastLineOffsetTop, helperNode.offsetTop, cutedTextNode.data);
-      isLastLine = helperNode.offsetTop === lastLineOffsetTop;
+      if (null === lastLineOffsetTop) {
+        lastLineOffsetTop = helperNode.offsetTop;
+      }
+      else {
+        isLastLine = helperNode.offsetTop === lastLineOffsetTop;
+      }
 
       textNode.appendData(cutedTextNode.data);
       parentNode.removeChild(cutedTextNode);
     }
 
     parentNode.removeChild(helperNode);
-
-    console.log('result:', pos, textNode.length);
 
     return textNode.substringData(pos, textNode.length - pos).replace(/^\s+|\s+$/g, '');
   }
