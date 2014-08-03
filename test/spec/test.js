@@ -1,4 +1,4 @@
-it("has valid last line text", function () {
+describe("has valid last line text", function() {
   var table = {
     a: "жизни.",
     b: "открывший истину, которого я бы назвал зодчим счастливой жизни.",
@@ -11,8 +11,10 @@ it("has valid last line text", function () {
 
   Object.keys(table).forEach(function(id) {
     var expected = table[id];
-    var el = document.getElementById(id);
-    getLastLine(el).should.equal(expected);
+    it('#'+id+': '+expected, function () {
+      var el = document.getElementById(id);
+      getLastLine(el).should.equal(expected);
+    });
   });
 });
 
