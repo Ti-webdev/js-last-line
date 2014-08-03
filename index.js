@@ -24,7 +24,6 @@
     while(0 < pos && isLastLine) {
       pos--;
       var cutedTextNode = textNode.splitText(pos);
-      console.log(cutedTextNode.data);
       insertAfter(parentNode, cutedTextNode, helperNode);
 
       if (null === lastLineOffsetTop) {

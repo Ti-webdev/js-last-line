@@ -6,6 +6,7 @@ it("has valid last line text", function () {
     d: "b",
     e: "a",
     f: "",
+    "break-word": 'ние людей'
   };
   Object.keys(table).forEach(function(id) {
     var expected = table[id];
