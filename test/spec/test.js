@@ -2,16 +2,17 @@ it("has valid last line text", function () {
   var table = {
     a: "жизни.",
     b: "открывший истину, которого я бы назвал зодчим счастливой жизни.",
-    c: "немалое наслаждение.",
+    c: window.mochaPhantomJS ? "наслаждение." : "немалое наслаждение.",
     d: "b",
     e: "a",
     f: "",
-    "break-word": 'ние людей'
+    "break-word": window.mochaPhantomJS ? "ение людей" : "ние людей"
   };
+
   Object.keys(table).forEach(function(id) {
     var expected = table[id];
     var el = document.getElementById(id);
-    getLastLine(el.firstChild).should.equal(expected);
+    getLastLine(el).should.equal(expected);
   });
 });
 

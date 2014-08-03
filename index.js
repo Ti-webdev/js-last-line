@@ -11,7 +11,11 @@
       parentNode.insertBefore(newNode, referenceNode.nextSibling);
   }
 
-  function getLastLine(textNode, helperTagName) {
+  function getLastLine(node, helperTagName) {
+    var textNode = node.firstChild;
+    if (null === textNode) {
+      return '';
+    }
     assertTextNode(textNode);
 
     var parentNode = textNode.parentNode;
@@ -38,7 +42,6 @@
     }
 
     parentNode.removeChild(helperNode);
-
     return textNode.substringData(pos, textNode.length - pos).replace(/^\s+|\s+$/g, '');
   }
 
