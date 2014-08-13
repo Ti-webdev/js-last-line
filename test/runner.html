@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mocha Test Runner</title>
     <link rel="stylesheet" href="../bower_components/mocha/mocha.css">
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
     <style>
       @font-face {
           font-family: 'Lobster';
@@ -65,14 +66,16 @@
     <script>mocha.setup('bdd')</script>
     <script src="spec/test.js"></script>
     <script>
-      if (window.mochaPhantomJS) {
-        // for apply fonts
-        setTimeout(function() {
-          mochaPhantomJS.run();
-        }, 0);
-      } else {
-        mocha.run();
-      }
+      $(window).load(function() {
+        if (window.mochaPhantomJS) {
+          // for apply fonts
+          setTimeout(function() {
+            mochaPhantomJS.run();
+          }, 0);
+        } else {
+            mocha.run();
+        }
+      });
     </script>
   </body>
 </html>
